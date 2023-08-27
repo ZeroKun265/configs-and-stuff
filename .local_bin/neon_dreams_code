@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+import subprocess
+
+subprocess.run(["sudo", "chown", "-R", "zerokun265", "/opt/visual-studio-code"])
+input("Open visual studio, enable neon dreams, close it, hit send")
+subprocess.run(["sudo", "chown", "-R", "root", "/opt/visual-studio-code"])

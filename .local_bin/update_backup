@@ -1,0 +1,50 @@
+#!/usr/bin/env python
+def main(original : str, backup : str):
+    import os
+    import subprocess
+    original = original.replace("~", "/home/zerokun265")
+    backup = backup.replace("~", "/home/zerokun265")
+    if not os.path.isdir(original) or not os.path.isdir(backup):
+        print("Error: One or both of folders don't exist")
+        return 1
+    diff = subprocess.run(["diff", "-qr", original, backup], stdout=subprocess.PIPE)
+    diff = diff.stdout.decode("utf-8").strip("\n ").split("\n")
+    for line in diff:
+        if line.startswith("Only"):
+            folder_file = line.replace("Only in ", "")
+            folder, file = folder_file.split(":")
+            file = file.strip(" ")
+            folder = folder.strip(" ")
+            if folder.startswith(original):
+                subdir = folder.replace(original, "")
+                # if file is in only in original we copy
+                subprocess.run(["cp", "-rf", f"{folder}/{file}", f"{backup}{subdir}/{file}"])
+            else:
+                subdir = folder.replace(backup, "")
+                i = input(f"Found file {file} in folder: {folder}. Remove? [Y/n]")
+                if i in ["n", "N", "No", "NO", "nO", "no"]:
+                    print(f"file: {file} in folder: {folder} not deleted.")
+                else:
+                    subprocess.run(["rm", "-rf", f"{backup}{subdir}/{file}"])
+                    print(f"file: {file} in folder: {folder} deleted.")
+        if line.startswith("Files"):
+            file_original, file_backup = line.replace("Files ", "").replace(" differ", "").split(" and ")
+            i = input(f"File {file_original} and {file_backup} differ, replace?[Y, n]")     
+            if i in ["n", "N", "No", "NO", "nO", "no"]:
+                print(f"File {file_backup} not replaced")
+            else:
+                subprocess.run(["rm", "-rf", file_backup])
+                subprocess.run(["cp", "-rf", file_original, file_backup])
+
+if __name__ == "__main__":
+    import sys
+    args = sys.argv[1:]
+    if not len(args) == 2:
+        print("Too many or few arguments") 
+        sys.exit(1)
+    for arg in args:
+        if arg.startswith("b"):
+            b = arg.split("=")[1]
+        elif arg.startswith("o"):
+            o = arg.split("=")[1]
+    main(o, b)
