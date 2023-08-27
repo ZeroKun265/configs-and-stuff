@@ -1,0 +1,37 @@
+[$Version]
+update_info=dolphin_detailsmodesettings.upd:rename-leading-padding
+
+[CreateDialog]
+LastMimeType=application/zip
+
+[ExtractDialog]
+1920x1080 screen: Height=560
+1920x1080 screen: Width=1280
+DirHistory[$e]=$HOME/Code/Java/Minecraft/Fabric/
+
+[General]
+Version=202
+ViewPropsTimestamp=2023,4,11,8,59,39.777
+
+[IconsMode]
+PreviewSize=112
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+Recent Files[$e]=file:$HOME,file:$HOME
+Recent URLs[$e]=file:$HOME/Code/Java/Minecraft/Fabric/
+detailViewIconSize=16
+
+[KPropertiesDialog]
+1920x1080 screen: Height=616
+1920x1080 screen: Width=438
+2 screens: Height=616
+2 screens: Width=438
+
+[MainWindow]
+MenuBar=Disabled
+ToolBarsMovable=Disabled
+
+[Search]
+Location=Everywhere
