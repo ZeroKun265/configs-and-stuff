@@ -107,6 +107,7 @@ export PATH="$HOME/.local_bin/:${PATH}"
 export PATH="$HOME/Code/Python/:${PATH}"
 export PATH="$HOME/src/nerd-dictation/:${PATH}"
 export DG="/home/zerokun265/Obsidian/Digital Garden"
+export PS1="%B%F{11}[%f%b%B%F{yellow}%?%f%b%B%F{yellow}]%f%b${PS1}"
 source ~/.github_tokens.sh
 
 # Ip Updater Setup
